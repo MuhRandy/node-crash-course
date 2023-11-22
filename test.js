@@ -1,3 +1,6 @@
-const name = "Randy";
+const salam = (name) => {
+  console.log(`Assalamu'alaikum ${name}`);
+};
 
-console.log(name);
+salam("Ali");
+salam("Randy");
