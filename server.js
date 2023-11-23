@@ -1,7 +1,7 @@
 const http = require("http");
 
 const server = http.createServer((req, res) => {
-  console.log("request made");
+  console.log(req.url, req.method);
 });
 
 // localhost is like a domain name on the web, but the domain is from our own computer
