@@ -11,12 +11,16 @@ const server = http.createServer((req, res) => {
   switch (req.url) {
     case "/":
       path += "index.html";
+      res.statusCode = 200;
       break;
     case "/about":
       path += "about.html";
+      res.statusCode = 200;
       break;
     default:
       path += "404.html";
+      res.statusCode = 404;
+      break;
   }
 
   // send an html file
@@ -36,3 +40,17 @@ const server = http.createServer((req, res) => {
 server.listen(3000, "localhost", () => {
   console.log("listening for request on port 3000");
 });
+
+// Status Code
+// Status code describe the type of response sent to the browser
+
+// 200 - OK
+// 301 - Resource moved
+// 404 - Not Found
+// 500 - Internal server error
+
+// 100 Range - informational responses
+// 200 Range - success codes
+// 300 Range - codes for redirects
+// 400 Range - user or client error codes
+// 500 Range - server error codes
