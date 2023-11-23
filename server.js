@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method);
@@ -6,10 +7,17 @@ const server = http.createServer((req, res) => {
   // set header content type
   res.setHeader("Content-Type", "text/html");
 
-  res.write("<head><link rel='stylesheet' href='#'></head>");
-  res.write("<p>Hello, Randy<p>");
-  res.write("<p>Hello again, Randy<p>");
-  res.end();
+  // send an html file
+  fs.readFile("./views/index.html", (err, data) => {
+    if (err) {
+      console.log(err);
+      res.end();
+    } else {
+      //   res.write(data);
+      // if you just pass one data, you can do it on end method instead
+      res.end(data);
+    }
+  });
 });
 
 // localhost is like a domain name on the web, but the domain is from our own computer
