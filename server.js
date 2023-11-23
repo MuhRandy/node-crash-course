@@ -59,3 +59,5 @@ server.listen(3000, "localhost", () => {
 // 300 Range - codes for redirects
 // 400 Range - user or client error codes
 // 500 Range - server error codes
+
+// when you want to create your project just run 'pnpm init' and package.json will be created
