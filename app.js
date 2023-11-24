@@ -63,6 +63,16 @@ app.get("/blogs/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => console.log(err));
+});
+
 app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create a new Blog" });
 });
@@ -71,6 +81,3 @@ app.get("/blogs/create", (req, res) => {
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
-
-// Route Parameters
-// The variable parts of the route that may change value
