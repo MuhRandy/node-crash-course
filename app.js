@@ -54,6 +54,15 @@ app.post("/blogs", (req, res) => {
     });
 });
 
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => console.log(err));
+});
+
 app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create a new Blog" });
 });
@@ -63,8 +72,5 @@ app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
 
-// Request Types
-// -GET request to get a resource
-// -POST request to create new data (e.g. a new blog)
-// -DELETE request to delete data (e.g. delete a blog)
-// -PUT request to update data (e.g. update a blog)
+// Route Parameters
+// The variable parts of the route that may change value
