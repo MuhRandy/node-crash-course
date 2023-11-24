@@ -19,6 +19,7 @@ app.set("view engine", "ejs");
 
 // middleware & static files
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // routes
@@ -40,6 +41,19 @@ app.get("/blogs", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+app.post("/blogs", (req, res) => {
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create a new Blog" });
 });
@@ -48,3 +62,9 @@ app.get("/blogs/create", (req, res) => {
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
+
+// Request Types
+// -GET request to get a resource
+// -POST request to create new data (e.g. a new blog)
+// -DELETE request to delete data (e.g. delete a blog)
+// -PUT request to update data (e.g. update a blog)
