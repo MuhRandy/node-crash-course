@@ -38,8 +38,3 @@ app.use("/blogs", blogRoutes);
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
-
-// MVC Basics
-// Stands for Model, View, Controller
-// MVC is a way of structuring our code & files
-// Keeps code more modular, reusable & easier to read
